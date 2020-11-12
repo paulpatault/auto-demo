@@ -17,6 +17,7 @@ let rec formule_to_string (f: formule): unit =
   | And (f1, f2)     -> formule_to_string f1; Printf.printf " ∧ "; formule_to_string f2
   | Implies (f1, f2) -> formule_to_string f1; Printf.printf " ⇒ "; formule_to_string f2
   | Not f'           -> Printf.printf "non "; formule_to_string f'
+  | Hyp lf           -> formules_to_string lf
 and terme_to_string (t: terme): unit = 
   match t with 
   | Variable v -> Printf.printf "%s" v
@@ -26,8 +27,7 @@ and terme_to_string (t: terme): unit =
       Printf.printf ",";
       List.iter terme_to_string tl
     )
-
-let rec formules_to_string (fl: formule list): unit = 
+and formules_to_string (fl: formule list): unit = 
   match fl with
   | []      -> ()
   | x :: [] -> formule_to_string x

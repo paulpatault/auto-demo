@@ -19,13 +19,15 @@ let make_formule (s: string) =
   Printf.printf "%s" s; flush stdout;
   let lexbuf = Lexing.from_channel stdin in
   let formule_in = Parser.main Lexer.scan_token lexbuf in
-  formule_in
+  match formule_in with 
+  | Hyp hl -> hl
+  | _ -> [formule_in]
 
 let run () = 
-  let gauche = make_formule "Γ: " in
-  let droite = make_formule "À démontrer: " in
+  let gamma = make_formule "Γ (hyphthèses): " in
+  let a_dem = make_formule "À démontrer: " in
   Printf.printf "\n---- Évaluation ----\n"; flush stdout;
-  let seq = { gauche = [gauche]; droite = [droite] } in
+  let seq = { gauche = gamma; droite = a_dem } in
   if eval seq 
   then Printf.printf "---- VALIDE ----\n"
   else Printf.printf "---- INVALIDE ----\n"

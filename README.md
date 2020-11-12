@@ -58,7 +58,8 @@ Retrouvez les [ressources](https://fr.wikipedia.org/wiki/Calcul_des_séquents) u
 | Implique : `⇒`             |  `=>`   |     ✓     |
 | Parenthèses ouvrante : `(` |   `(`   |     ✓     |
 | Parenthèses fermante : `)` |   `)`   |     ✓     |
-| Séparateur : `,`           |   `,`   |     ✓     |
+| Séparateur : `;`           |   `;`   |     ✓     |
+| Virgule : `,`              |   `,`   |     ✓     |
 | Formule : `A`              |   `A`   |     ✓     |
 | Variable : `𝒙`             |   `𝒙`   | :warning: |
 | Vide : `ε`                 |   `_`   |     ✓     |

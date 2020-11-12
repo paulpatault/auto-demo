@@ -2,6 +2,7 @@
 (* The type of tokens. *)
 
 type token = 
+  | SEMI
   | RPAR
   | OR
   | NOT
@@ -13,6 +14,7 @@ type token =
   | FLECHE
   | EXISTS
   | EOF
+  | END
   | EMPTY
   | EGAL
   | CST of (int)

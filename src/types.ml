@@ -5,7 +5,7 @@ type const = string
 type terme = 
   | Variable of var 
   | Constant of const * terme list
-  
+
 type formule =
   | Vide
   | Predicat of const * terme list
@@ -14,7 +14,8 @@ type formule =
   | Or       of formule * formule 
   | And      of formule * formule 
   | Implies  of formule * formule 
-  | Not      of formule 
+  | Not      of formule
+  | Hyp      of formule list
 
   (* let toutXNeg = Forall("x", (Predicat("<", [Variable ("x"); Constant("0", [])])))  *)
 
