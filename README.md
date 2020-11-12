@@ -5,13 +5,13 @@ Outil de démonstration automatique. Prends deux formules logiques `𝗔` et `�
 # Usage
 
 + Compilation et exéctution :
-    ```bash
+    ```
     $ make
     $ ./main
     ```
 + Donner au programme les entrées : 
   > → remplir les trous en utilisant la bonne syntaxe, cf. [Syntaxe](#Syntaxe)
-    ```bash
+    ```
     ...
     $ Formule de gauche: __
     $ Formule de droite: __
@@ -19,7 +19,7 @@ Outil de démonstration automatique. Prends deux formules logiques `𝗔` et `�
     ```
 + Le résultat va s'afficher !
     > Exemple 1
-    ```bash
+    ```
     $ ./main
      Formule de gauche: A && B
      (A) et (B)
@@ -32,7 +32,7 @@ Outil de démonstration automatique. Prends deux formules logiques `𝗔` et `�
          (A)(B) => (A)(B)   → is axiom
     ```
     > Exemple 2
-    ```bash
+    ```
     $ ./main
      Formule de gauche: A || B
      (A) ou (B)
