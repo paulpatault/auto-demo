@@ -1,7 +1,8 @@
 # AutoDemo
  
 Outil de démonstration automatique. Prends deux formules logiques `𝗔` et `𝗕` en entrées, et vérifie que `𝗔 ⟹ 𝗕`.
-    
+Retrouvez les [ressources](https://fr.wikipedia.org/wiki/Calcul_des_séquents) utilisée.
+
 # Usage
 
 + Compilation et exéctution :
