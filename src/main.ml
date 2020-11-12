@@ -11,8 +11,8 @@ let rec eval (fs: sequent) =
     Printf.printf "\n"; 
     let a = List.fold_left (fun acc e -> acc && eval e) true red_fs in
     decr decale; a
-  with | Loose -> Printf.printf "   → impossible\n---- INVALIDE ----\n"; false
-       | Win s -> Printf.printf "   → is axiom (%s)\n---- VALIDE ----\n" s; true
+  with | Loose -> Printf.printf "   → impossible\n"; false
+       | Win s -> Printf.printf "   → is axiom (%s)\n" s; true
 
 
 let make_formule (s: string) = 
@@ -26,6 +26,8 @@ let run () =
   let droite = make_formule "À démontrer: " in
   Printf.printf "\n---- Évaluation ----\n"; flush stdout;
   let seq = { gauche = [gauche]; droite = [droite] } in
-  eval seq
+  if eval seq 
+  then Printf.printf "---- VALIDE ----\n"
+  else Printf.printf "---- INVALIDE ----\n"
 
 let _ = run ()
