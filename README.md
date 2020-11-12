@@ -22,9 +22,7 @@ Outil de démonstration automatique. Prends deux formules logiques `𝗔` et `�
     ```
     $ ./main
      Formule de gauche: A && B
-     (A) et (B)
      Formule de droite: A || B
-     (A) ou (B)
     
      ---- Évaluation ----
      (A) et (B) => (A) ou (B)   ( rule G∧ )
@@ -35,9 +33,7 @@ Outil de démonstration automatique. Prends deux formules logiques `𝗔` et `�
     ```
     $ ./main
      Formule de gauche: A || B
-     (A) ou (B)
      Formule de droite: A && B
-     (A) et (B)
 
      ---- Évaluation ----
      (A) ou (B) => (A) et (B)   ( rule G∨ )
