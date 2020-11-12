@@ -53,10 +53,18 @@ Outil de démonstration automatique. Prends deux formules logiques `𝗔` et `�
 | Différent `≠`            |  `<>`   |
 | Inférieur `<`            |   `<`   |
 | Et `∧`                   |  `&&`   |
-| Ou `∨`                   | `\|\|`  |
+| Ou `∨`                   |  `||`   |
 | Implique `⇒`             |  ` =>`  |
 | Parenthèses ouvrante `(` |   `(`   |
 | Parenthèses fermante `)` |   `)`   |
 | Séparateur `,`           |   `,`   |
 | Formule `𝗔`              |   `𝗔`   |
 | Variable `𝒙`             |   `𝒙`   |
+
+
+# Todo
+
++ Rules for : ∀, ∃
++ Fix : 
+  + parser.mly
+  + ...
