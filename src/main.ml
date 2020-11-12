@@ -39,6 +39,7 @@ let make_formule (s: string) =
 let run () = 
   let gauche = make_formule "gauche" in
   let droite = make_formule "droite" in
+  Printf.printf "\n---- Évaluation ----\n"; flush stdout;
   let seq = { gauche = [gauche]; droite = [droite] } in
   eval seq
 
