@@ -10,7 +10,7 @@
   (* ∀ x, x < 10 *)
 
    *)
-  exception Eof
+  exception Eof 
 }
 
 let alpha = ['a'-'z' 'A'-'Z']
@@ -22,8 +22,10 @@ rule scan_token = parse
   | '\n' { EOF }
   | digit+ as n  { CST(int_of_string n) }
   | ident as id  { IDENT(id) }
-  | "[A]"    { FORALL }
-  | "[E]"    { EXISTS }
+  | "[A]"  { FORALL }
+  | "[E]"  { EXISTS }
+  | '!'    { NOT }
+  | '_'    { EMPTY }
   | '='    { EGAL }
   | "<>"   { INEGAL }
   | '<'    { LT }
@@ -47,7 +49,7 @@ rule scan_token = parse
     | OR  -> "OR"
     | AND -> "AND"  
     | FLECHE -> "FLECHE"
-    | NOT -> "NOT"
+    |  -> ""
     | LT -> "LT"
     | LPAR -> "LPAR"
     | RPAR -> "RPAR"

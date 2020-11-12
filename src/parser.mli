@@ -13,6 +13,7 @@ type token =
   | FLECHE
   | EXISTS
   | EOF
+  | EMPTY
   | EGAL
   | CST of (int)
   | COMMA

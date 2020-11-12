@@ -8,6 +8,7 @@
 %token EGAL INEGAL LT
 %token LPAR RPAR
 %token COMMA
+%token EMPTY
 %token EOF
 
 %left OR AND
@@ -26,11 +27,12 @@ expr_simple:
 | n=CST             { Predicat(string_of_int n, []) }
 | x=IDENT           { Predicat(x, []) }
 | LPAR e=expr RPAR  { e }
+| e=EMPTY           { Vide }
 ;
 
 expr:
   | e=expr_simple         { e }
-  | NOT e=expr            { Not e }
+  | NOT e=expr            { Not(e) }
   | e1=expr AND e2=expr   { And(e1, e2) }
   | e1=expr OR  e2=expr   { Or(e1, e2) }
   | e1=expr EGAL e2=expr  { e1 }

@@ -2,15 +2,12 @@ open Types
 open Printer 
 open Core
 
-
-let toutXNeg = Forall("x", (Predicat("<", [Variable ("x"); Constant("0", [])])))
-
 let rec eval (fs: sequent) =
   spaces ();
   sequent_to_string fs;
   if is_axiom fs then (Printf.printf "   → is axiom\n"; true) 
   else (
-    try 
+    try
       let red_fs = reduction fs in
       incr decale;
       Printf.printf "\n"; 
@@ -18,16 +15,6 @@ let rec eval (fs: sequent) =
       decr decale; a
     with Loose -> Printf.printf "   → impossible\n"; false
   )
-
-let fs = {
-  gauche = [And (Predicat ("A", []), Predicat ("B", []))];
-  droite = [Or (Predicat ("A", []), Predicat ("B", []))]
-}
-
-let fs2 = {
-  gauche = [Or (Predicat ("A", []), Predicat ("B", []))];
-  droite = [And (Predicat ("A", []), Predicat ("B", []))]
-}
 
 let make_formule (s: string) = 
   Printf.printf "Formule de %s: " s; flush stdout;

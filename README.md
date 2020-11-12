@@ -42,7 +42,6 @@ Outil de démonstration automatique. Prends deux formules logiques `𝗔` et `�
          (A) => (B)   → impossible
     ```
   
-  
 # Syntaxe
 
 | Mot                        | Syntaxe |   Étât    |
@@ -51,6 +50,7 @@ Outil de démonstration automatique. Prends deux formules logiques `𝗔` et `�
 | Il existe : `∃`            |  `[E]`  | :warning: |
 | Égale : `=`                |   `=`   | :warning: |
 | Différent : `≠`            |  `<>`   | :warning: |
+| Non : `¬`                  |   `!`   |     ✓     |
 | Inférieur : `<`            |   `<`   |     ✓     |
 | Et : `∧`                   |  `&&`   |     ✓     |
 | Ou : `∨`                   |  `||`   |     ✓     |
@@ -58,8 +58,9 @@ Outil de démonstration automatique. Prends deux formules logiques `𝗔` et `�
 | Parenthèses ouvrante : `(` |   `(`   |     ✓     |
 | Parenthèses fermante : `)` |   `)`   |     ✓     |
 | Séparateur : `,`           |   `,`   |     ✓     |
-| Formule : `𝗔`              |   `𝗔`   |     ✓     |
+| Formule : `A`              |   `A`   |     ✓     |
 | Variable : `𝒙`             |   `𝒙`   | :warning: |
+| Vide : `ε`                 |   `_`   |     ✓     |
 
 
 # Todo
