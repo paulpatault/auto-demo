@@ -14,7 +14,13 @@ let rec permutations (l : 'a list) : 'a list list =
       let r = permutations t in
       List.fold_left (fun acc p -> insert h p @ acc) [] r
 
+let rec contient (l1: 'a list) (l2: 'a list): bool = 
+  match l2 with 
+  | [] -> true 
+  | e::k -> List.exists (fun e' -> e' = e) l1 && contient l1 k
+
 let is_axiom (seq: sequent): bool = 
+  contient seq.gauche seq.droite ||
   List.exists (fun e -> seq.gauche = e) (permutations seq.droite) 
 
 let rec reduction (seq: sequent): sequent list = 
