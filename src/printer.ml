@@ -42,5 +42,5 @@ let decale = ref 0
 
 let spaces () = 
   let str = String.init !decale (fun x -> ' ') in
-  let s = String.concat "" (List.init 2 (fun x -> str)) in
+  let s = String.concat "" (List.init 3 (fun x -> str)) in
   Printf.printf "%s" s

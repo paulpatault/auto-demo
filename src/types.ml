@@ -32,3 +32,4 @@ let fs2 = {
 
 
 exception Loose 
+exception Win of string

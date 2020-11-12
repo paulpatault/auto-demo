@@ -26,11 +26,15 @@ let rec contient (l1: 'a list) (l2: 'a list): bool =
   | [] -> true 
   | e::k -> List.exists (fun e' -> e' = e) l1 && contient l1 k
 
-let is_axiom (seq: sequent): bool = 
-  contient seq.gauche seq.droite ||
-  contient seq.droite seq.gauche ||
-  List.exists (fun e -> seq.gauche = e) (permutations seq.droite) 
+let is_axiom (seq: sequent): bool * string =
+  let a = contient seq.gauche seq.droite in
+  let b = contient seq.droite seq.gauche in
+  let c = List.exists (fun e -> seq.gauche = e) (permutations seq.droite) in
 
+  if a then true, " Γ in Δ " else 
+  if b then true, " Δ in Γ " else
+  if c then true, " Γ = Δᵢ " else 
+  false, ""
 
 (********************************************
 *                                           *
@@ -90,8 +94,6 @@ let rec reduction ?(turn = -1) (seq: sequent): sequent list =
       Printf.printf "   ( rule G¬ )";
       let seq_res = { gauche = gamma; droite = f :: sd } in 
       [seq_res]
-  
-  (* | [Vide], sd -> [ {gauche = [Vide]; droite = [Vide]} ] *)
 
   | gamma, sd -> 
       if turn = List.length gamma 
@@ -99,8 +101,13 @@ let rec reduction ?(turn = -1) (seq: sequent): sequent list =
       reduction {gauche = rotate_up gamma; droite = sd} ~turn:(turn+1)
 
 and reduction_droite ?(turn = -1) (gamma: formule list) (fl: formule list) : sequent list =
-  if turn = List.length fl then raise Loose else
-  match fl with
+  if turn = List.length fl 
+  then (
+    let cond, ax = is_axiom ({ gauche = gamma; droite = fl}) in
+    if cond then raise (Win ax)
+    else raise Loose
+  ) 
+  else match fl with
   | [] -> []
   | e :: k -> 
     begin match e with 
