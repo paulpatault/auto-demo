@@ -14,7 +14,6 @@ type token =
   | FLECHE
   | EXISTS
   | EOF
-  | END
   | EMPTY
   | EGAL
   | CST of (int)

@@ -7,7 +7,7 @@
 %token NOT AND OR FORALL EXISTS FLECHE
 %token EGAL INEGAL LT
 %token LPAR RPAR
-%token COMMA SEMI END
+%token COMMA SEMI
 %token EMPTY
 %token EOF
 
@@ -21,7 +21,7 @@
 
 main:
 | e=expr EOF { e }
-| l=separated_list(SEMI, expr) END {
+| l=separated_list(SEMI, expr) EOF {
   Hyp l 
 }
 ;

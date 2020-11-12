@@ -35,8 +35,7 @@ rule scan_token = parse
   | '('    { LPAR }
   | ')'    { RPAR }
   | ','    { COMMA }
-  | "$"    { END }
-  | ";"    { SEMI }
+  | ';'    { SEMI }
   | _ as c { failwith (Printf.sprintf "-> invalid character: %c" c) }
   | eof    { raise Eof }
 
