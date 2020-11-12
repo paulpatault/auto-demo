@@ -54,7 +54,7 @@ Retrouvez les [ressources](https://fr.wikipedia.org/wiki/Calcul_des_séquents) u
 | Non : `¬`                  |   `!`   |     ✓     |
 | Inférieur : `<`            |   `<`   |     ✓     |
 | Et : `∧`                   |  `&&`   |     ✓     |
-| Ou : `∨`                   |  `||`   |     ✓     |
+| Ou : `∨`                   | `\|\|`  |     ✓     |
 | Implique : `⇒`             |  `=>`   |     ✓     |
 | Parenthèses ouvrante : `(` |   `(`   |     ✓     |
 | Parenthèses fermante : `)` |   `)`   |     ✓     |
