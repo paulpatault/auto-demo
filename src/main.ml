@@ -33,7 +33,6 @@ let make_formule (s: string) =
   Printf.printf "Formule de %s: " s; flush stdout;
   let lexbuf = Lexing.from_channel stdin in
   let formule_in = Parser.main Lexer.scan_token lexbuf in
-  formule_to_string formule_in; print_newline(); flush stdout;
   formule_in
 
 let run () = 
