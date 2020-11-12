@@ -2,9 +2,10 @@ open Types
 open Printer 
 open Core
 
+
 let toutXNeg = Forall("x", (Predicat("<", [Variable ("x"); Constant("0", [])])))
 
-let rec run (fs: sequent) =
+let rec eval (fs: sequent) =
   spaces ();
   sequent_to_string fs;
   if is_axiom fs then (Printf.printf "   → is axiom\n"; true) 
@@ -13,7 +14,7 @@ let rec run (fs: sequent) =
       let red_fs = reduction fs in
       incr decale;
       Printf.printf "\n"; 
-      let a = List.fold_left (fun acc e -> acc && run e) true red_fs in
+      let a = List.fold_left (fun acc e -> acc && eval e) true red_fs in
       decr decale; a
     with Loose -> Printf.printf "   → impossible\n"; false
   )
@@ -28,4 +29,17 @@ let fs2 = {
   droite = [And (Predicat ("A", []), Predicat ("B", []))]
 }
 
-let _ = run fs
+let make_formule (s: string) = 
+  Printf.printf "Formule de %s: " s; flush stdout;
+  let lexbuf = Lexing.from_channel stdin in
+  let formule_in = Parser.main Lexer.scan_token lexbuf in
+  formule_to_string formule_in; print_newline(); flush stdout;
+  formule_in
+
+let run () = 
+  let gauche = make_formule "gauche" in
+  let droite = make_formule "droite" in
+  let seq = { gauche = [gauche]; droite = [droite] } in
+  eval seq
+
+let _ = run ()

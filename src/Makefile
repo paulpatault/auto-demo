@@ -1,8 +1,8 @@
 caml_o = ocamlc
 
-all : main test
+all : main
 
-main : types.cmo printer.cmo core.cmo main.cmo
+main : types.cmo printer.cmo core.cmo lexer.cmo parser.cmo main.cmo
 	$(caml_o) $^ -o $@
 
 main.cmo : main.ml
@@ -15,12 +15,6 @@ printer.cmo : types.ml printer.ml
 	$(caml_o) $^ -c
 
 types.cmo : types.ml
-	$(caml_o) $^ -c
-
-test : printer.cmo lexer.cmo parser.cmo types.cmo test.cmo
-	$(caml_o) $^ -o $@
-
-test.cmo :types.ml test.ml
 	$(caml_o) $^ -c
 
 lexer.ml : types.ml lexer.mll 
@@ -39,7 +33,7 @@ parser.cmo : parser.mli
 clean :
 	rm -rf *.cmo
 	rm -rf *.cmi
-	rm main test
+	rm main
 
 cleanup :
 	rm -rf *.cmo

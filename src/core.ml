@@ -1,6 +1,21 @@
 open Types
 
-let is_axiom (seq: sequent): bool = seq.gauche = seq.droite 
+let rec insert (x : 'a) (l : 'a list) : 'a list list =
+  match l with
+  | [] -> [ [ x ] ]
+  | h :: t ->
+      let r = insert x t in
+      (x :: l) :: List.map (fun v -> h :: v) r
+
+let rec permutations (l : 'a list) : 'a list list =
+  match l with
+  | [] -> [ [] ]
+  | h :: t ->
+      let r = permutations t in
+      List.fold_left (fun acc p -> insert h p @ acc) [] r
+
+let is_axiom (seq: sequent): bool = 
+  List.exists (fun e -> seq.gauche = e) (permutations seq.droite) 
 
 let rec reduction (seq: sequent): sequent list = 
   match seq.gauche, seq.droite with 
