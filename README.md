@@ -45,21 +45,21 @@ Outil de démonstration automatique. Prends deux formules logiques `𝗔` et `�
   
 # Syntaxe
 
-| Mot                      | Syntaxe |
-| :----------------------- | :-----: |
-| Pour tout `∀`            |  `[A]`  |
-| Il existe `∃`            |  `[E]`  |
-| Égale `=`                |   `=`   |
-| Différent `≠`            |  `<>`   |
-| Inférieur `<`            |   `<`   |
-| Et `∧`                   |  `&&`   |
-| Ou `∨`                   |  `||`   |
-| Implique `⇒`             |  ` =>`  |
-| Parenthèses ouvrante `(` |   `(`   |
-| Parenthèses fermante `)` |   `)`   |
-| Séparateur `,`           |   `,`   |
-| Formule `𝗔`              |   `𝗔`   |
-| Variable `𝒙`             |   `𝒙`   |
+| Mot                        | Syntaxe |
+| :------------------------- | :-----: |
+| Pour tout : `∀`            |  `[A]`  |
+| Il existe : `∃`            |  `[E]`  |
+| Égale : `=`                |   `=`   |
+| Différent : `≠`            |  `<>`   |
+| Inférieur : `<`            |   `<`   |
+| Et : `∧`                   |  `&&`   |
+| Ou : `∨`                   |  `||`   |
+| Implique : `⇒`             |  `=>`   |
+| Parenthèses ouvrante : `(` |   `(`   |
+| Parenthèses fermante : `)` |   `)`   |
+| Séparateur : `,`           |   `,`   |
+| Formule : `𝗔`              |   `𝗔`   |
+| Variable : `𝒙`             |   `𝒙`   |
 
 
 # Todo
