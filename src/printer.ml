@@ -1,6 +1,5 @@
 open Types
 
-
 (********************************************
 *                                           *
 *              Globals                      *
@@ -26,7 +25,6 @@ let stop   = "\027[0m"
 let colors = [|blue; red; green; purple;|]
 let i = ref 0
 let len = Array.length colors
-
 
 (********************************************
 *                                           *

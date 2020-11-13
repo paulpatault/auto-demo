@@ -31,6 +31,5 @@ let fs2 = {
   droite = [And (Predicat ("A", []), Predicat ("B", []))]
 } *)
 
-
 exception Loose 
 exception Win of string
