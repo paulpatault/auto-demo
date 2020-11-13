@@ -43,14 +43,15 @@ let close_par i' =
 let rec formule_to_string (f: formule): unit =
   match f with
   | Vide -> Printf.printf "" 
-  | Predicat(c, tl)  -> 
-      Printf.printf "(%s" c;
-      if List.length tl > 0 then (
-        Printf.printf "(";
-        List.iter terme_to_string tl;
-        Printf.printf "))"
+  | Predicat(c, termel)  -> 
+      if List.length termel > 0 then (
+        let vi = !i in open_par vi;
+        terme_to_string (List.hd termel);
+        Printf.printf " %s " c;
+        terme_to_string (List.hd (List.tl termel));
+        close_par vi
       ) 
-      else Printf.printf ")"
+      else Printf.printf "%s" c
   | Forall (v, f')   -> let vi = !i in open_par vi; Printf.printf "pour tout %s " v; formule_to_string f'; close_par vi
   | Exists (v, f')   -> let vi = !i in open_par vi; Printf.printf "il existe %s " v; formule_to_string f'; close_par vi
   | Or (f1, f2)      -> let vi = !i in open_par vi; formule_to_string f1; Printf.printf " ∨ "; formule_to_string f2;close_par vi
