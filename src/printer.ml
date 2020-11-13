@@ -1,5 +1,12 @@
 open Types
 
+
+(********************************************
+*                                           *
+*              Globals                      *
+*                                           *
+********************************************) 
+
 let parenthesage = ref false 
 
 let () = 
@@ -19,6 +26,13 @@ let stop   = "\027[0m"
 let colors = [|blue; red; green; purple;|]
 let i = ref 0
 let len = Array.length colors
+
+
+(********************************************
+*                                           *
+*              Functions                    *
+*                                           *
+********************************************) 
 
 let open_par i' =
   incr i;

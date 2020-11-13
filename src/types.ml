@@ -17,7 +17,7 @@ type formule =
   | Not      of formule
   | Hyp      of formule list
 
-  (* let toutXNeg = Forall("x", (Predicat("<", [Variable ("x"); Constant("0", [])])))  *)
+(* let toutXNeg = Forall("x", (Predicat("<", [Variable ("x"); Constant("0", [])])))  *)
 
 type sequent = {gauche : formule list; droite : formule list}
 

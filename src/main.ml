@@ -2,6 +2,8 @@ open Types
 open Printer 
 open Core
 
+(* (!B => !A) => (A => B) *)
+
 let rec eval (fs: sequent) =
   spaces ();
   sequent_to_string fs;

@@ -8,7 +8,7 @@ main : types.cmo printer.cmo core.cmo lexer.cmo parser.cmo main.cmo
 main.cmo : main.ml
 	$(caml_o) $^ -c
 
-core.cmo : core.ml
+core.cmo : printer.ml core.ml
 	$(caml_o) $^ -c
 
 printer.cmo : types.ml printer.ml
