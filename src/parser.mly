@@ -11,7 +11,9 @@
 %token EMPTY
 %token EOF
 
-%left OR AND FLECHE
+%right FLECHE
+%right OR
+%right AND
 %nonassoc NOT
 
 %start main

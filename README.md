@@ -42,7 +42,7 @@ Retrouvez les [ressources](https://fr.wikipedia.org/wiki/Calcul_des_séquents) u
          (A) => (A)   → is axiom
          (A) => (B)   → impossible
     ```
-  
+
 # Syntaxe
 
 | Mot                        | Syntaxe |   Étât    |
