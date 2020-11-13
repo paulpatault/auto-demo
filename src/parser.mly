@@ -11,6 +11,8 @@
 %token EMPTY
 %token EOF
 
+%right EXISTS
+%right FORALL
 %right FLECHE
 %right OR
 %right AND
