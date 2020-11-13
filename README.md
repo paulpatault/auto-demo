@@ -14,33 +14,39 @@ Retrouvez les [ressources](https://fr.wikipedia.org/wiki/Calcul_des_séquents) u
   > → remplir les trous en utilisant la bonne syntaxe, cf. [Syntaxe](#Syntaxe)
     ```
     ...
-    $ Formule de gauche: __
-    $ Formule de droite: __
+    $ Γ (hyphthèses): __
+    $ Δ (à démontrer): __
     ...
     ```
 + Le résultat va s'afficher !
     > Exemple 1
     ```
     $ ./main
-     Formule de gauche: A && B
-     Formule de droite: A || B
-    
-     ---- Évaluation ----
-     (A) et (B) => (A) ou (B)   ( rule G∧ )
-       (A)(B) => (A) ou (B)   ( rule Dv )
-         (A)(B) => (A)(B)   → is axiom
+      Γ (hyphthèses): P ; P => Q ; Q => R
+      Δ (à démontrer): R
+
+      ---- Évaluation ----
+      (P), (P) ⇒ (Q), (Q) ⇒ (R) ⊢ (R)   ( rule G→ )
+        (Q) ⇒ (R), (P) ⊢ (P), (R)   ( rule G→ )
+            (P) ⊢ (Q), (P), (R)   → is axiom
+            (R), (P) ⊢ (P), (R)   → is axiom
+        (Q), (Q) ⇒ (R), (P) ⊢ (R)   ( rule G→ )
+            (P), (Q) ⊢ (Q), (R)   → is axiom
+            (R), (P), (Q) ⊢ (R)   → is axiom
+      ---- VALIDE ----
     ```
     > Exemple 2
     ```
     $ ./main
-     Formule de gauche: A || B
-     Formule de droite: A && B
+      Γ (hyphthèses): A || B
+      Δ (à démontrer): A && B
 
-     ---- Évaluation ----
-     (A) ou (B) => (A) et (B)   ( rule G∨ )
-       (A) => (A) et (B)   ( rule D∧ )
-         (A) => (A)   → is axiom
-         (A) => (B)   → impossible
+      ---- Évaluation ----
+      (A) ∨ (B) ⊢ (A) ∧ (B)   ( rule G∨ )
+        (A) ⊢ (A) ∧ (B)   ( rule D∧ )
+            (A) ⊢ (A)   → is axiom
+            (A) ⊢ (B)   → impossible
+      ---- INVALIDE ----
     ```
 
 # Syntaxe
