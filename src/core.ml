@@ -1,5 +1,6 @@
 open Types
 open Printer
+open List_aux
 
 (********************************************
 *                                           *
@@ -7,26 +8,10 @@ open Printer
 *                                           *
 ********************************************) 
 
-let rec insert (x : 'a) (l : 'a list) : 'a list list =
-  match l with
-  | [] -> [ [ x ] ]
-  | h :: t ->
-      let r = insert x t in
-      (x :: l) :: List.map (fun v -> h :: v) r
-
-let rec permutations (l : 'a list) : 'a list list =
-  match l with
-  | [] -> [ [] ]
-  | h :: t ->
-      let r = permutations t in
-      List.fold_left (fun acc p -> insert h p @ acc) [] r
-
-let rec contient (l1: 'a list) (l2: 'a list): bool = 
-  match l2 with 
-  | [] -> true 
-  | e::k -> List.exists (fun e' -> e' = e) l1 && contient l1 k
-
 let is_axiom (seq: sequent): bool * string =
+  if not_empty (inter seq.gauche seq.droite) then true, "yeah" else
+
+  (* Surement inutile *)
   let a = contient seq.gauche seq.droite in
   let b = contient seq.droite seq.gauche in
   let c = List.exists (fun e -> seq.gauche = e) (permutations seq.droite) in
@@ -34,6 +19,7 @@ let is_axiom (seq: sequent): bool * string =
   if a then true, " Γ in Δ " else 
   if b then true, " Δ in Γ " else
   if c then true, " Γ = Δᵢ " else 
+  (* ... *)
   false, ""
 
 (********************************************

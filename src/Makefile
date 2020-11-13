@@ -2,19 +2,22 @@ caml_o = ocamlc
 
 all : main
 
-main : types.cmo printer.cmo core.cmo lexer.cmo parser.cmo main.cmo
+main : types.cmo printer.cmo list_aux.cmo core.cmo lexer.cmo parser.cmo main.cmo
 	$(caml_o) $^ -o $@
 
 main.cmo : main.ml
 	$(caml_o) $^ -c
 
-core.cmo : printer.ml core.ml
+core.cmo : types.ml list_aux.ml printer.ml core.ml
 	$(caml_o) $^ -c
 
 printer.cmo : types.ml printer.ml
 	$(caml_o) $^ -c
 
 types.cmo : types.ml
+	$(caml_o) $^ -c
+
+list_aux.cmo : list_aux.ml
 	$(caml_o) $^ -c
 
 lexer.ml : types.ml lexer.mll 
