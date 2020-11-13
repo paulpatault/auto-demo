@@ -14,8 +14,9 @@ Retrouvez les [ressources](https://fr.wikipedia.org/wiki/Calcul_des_séquents) u
   > → remplir les trous en utilisant la bonne syntaxe, cf. [Syntaxe](#Syntaxe)
     ```
     ...
-    $ Γ (hyphthèses): __
-    $ Δ (à démontrer): __
+    $ ./main
+      Γ (hyphthèses): __
+      Δ (à démontrer): __
     ...
     ```
 + Le résultat va s'afficher !
@@ -51,24 +52,25 @@ Retrouvez les [ressources](https://fr.wikipedia.org/wiki/Calcul_des_séquents) u
 
 # Syntaxe
 
-| Mot                        | Syntaxe |   Étât    |
-| :------------------------- | :-----: | :-------: |
-| Pour tout : `∀`            |  `[A]`  | :warning: |
-| Il existe : `∃`            |  `[E]`  | :warning: |
-| Égale : `=`                |   `=`   | :warning: |
-| Différent : `≠`            |  `<>`   | :warning: |
-| Non : `¬`                  |   `!`   |     ✓     |
-| Inférieur : `<`            |   `<`   |     ✓     |
-| Et : `∧`                   |  `&&`   |     ✓     |
-| Ou : `∨`                   | `\|\|`  |     ✓     |
-| Implique : `⇒`             |  `=>`   |     ✓     |
-| Parenthèses ouvrante : `(` |   `(`   |     ✓     |
-| Parenthèses fermante : `)` |   `)`   |     ✓     |
-| Séparateur : `;`           |   `;`   |     ✓     |
-| Virgule : `,`              |   `,`   |     ✓     |
-| Formule : `A`              |   `A`   |     ✓     |
-| Variable : `𝒙`             |   `𝒙`   | :warning: |
-| Vide : `ε`                 |   `_`   |     ✓     |
+| Mot                               |    Syntaxe    |   Étât    |
+| :-------------------------------- | :-----------: | :-------: |
+| Pour tout : `∀`                   |     `[A]`     | :warning: |
+| Il existe : `∃`                   |     `[E]`     | :warning: |
+| Égale : `=`                       |      `=`      | :warning: |
+| Différent : `≠`                   |     `<>`      | :warning: |
+| Non : `¬`                         |      `!`      |     ✓     |
+| Inférieur : `<`                   |      `<`      |     ✓     |
+| Et : `∧`                          |     `&&`      |     ✓     |
+| Ou : `∨`                          |    `\|\|`     |     ✓     |
+| Implique : `⇒`                    |     `=>`      |     ✓     |
+| Parenthèses ouvrante : `(`        |      `(`      |     ✓     |
+| Parenthèses fermante : `)`        |      `)`      |     ✓     |
+| Séparateur : `;`                  |      `;`      |     ✓     |
+| Virgule : `,`                     |      `,`      |     ✓     |
+| Formule : `A`                     |      `A`      |     ✓     |
+| Variable : `𝒙`                    |      `𝒙`      | :warning: |
+| Vide : `ε`                        |      `_`      |     ✓     |
+| Liste d'hypothèses : `[A, B,...]` | `A ; B ; ...` |     ✓     |
 
 
 # Todo
