@@ -11,7 +11,7 @@
 %token EMPTY
 %token EOF
 
-%left OR AND
+%left OR AND FLECHE
 %nonassoc NOT
 
 %start main
@@ -33,7 +33,7 @@ expr_simple:
 ;
 
 expr:
-| LPAR e=expr RPAR  { e }
+| LPAR e=expr RPAR      { e }
 | e=expr_simple         { e }
 | NOT e=expr            { Not(e) }
 | e1=expr AND e2=expr   { And(e1, e2) }
