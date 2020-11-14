@@ -68,11 +68,11 @@
 #
 # The Caml sources (including camlyacc and camllex source files)
 
-SOURCES = lexer.mll types.mli types.ml parser.mly list_aux.mli list_aux.ml printer.mli printer.ml core.mli core.ml main.ml
+SOURCES = lexer.mll types.ml parser.mly list_aux.mli list_aux.ml printer.mli printer.ml core.mli core.ml main.ml
 
 # The executable file to generate (default a.out under Unix)
 
-EXEC = a.out
+EXEC = main
 
 
 ########################## Advanced user's variables #####################
