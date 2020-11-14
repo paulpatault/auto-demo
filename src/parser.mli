@@ -26,4 +26,4 @@ exception Error
 
 (* The monolithic API. *)
 
-val main: (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (Types.formule)
+val main: (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (Types.terme_ou_formule)

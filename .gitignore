@@ -3,4 +3,5 @@
 infos.md
 *.cmi
 *.cmo
+*.o
 main

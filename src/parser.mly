@@ -7,7 +7,7 @@
 %token NOT AND OR FORALL EXISTS FLECHE
 %token EGAL INEGAL LT
 %token LPAR RPAR
-%token COMMA SEMI
+%token COMMA /* , */ SEMI /* ; */
 %token EMPTY
 %token EOF
 
@@ -19,29 +19,31 @@
 %nonassoc NOT
 
 %start main
-%type <Types.formule> main
+%type <Types.terme_ou_formule> main
 
 %%
 
 main:
-| e=expr EOF { e }
+| e=expr EOF { F e }
 | l=separated_list(SEMI, expr) EOF {
-  Hyp l 
+  F (Hyp l) 
 }
 ;
 
 expr_simple:
-| n=CST             { Variable (string_of_int n) }
-| x=IDENT           { Variable x }
-| e=EMPTY           { Variable "" }
+| n=CST             { (Variable (string_of_int n)) }
+| x=IDENT           { (Variable x) }
 ;
 
 expr:
 | LPAR e=expr RPAR       { e }
+| e=EMPTY                { Vide }
 | e=expr_simple          { 
     match e with
-    | Variable "" -> Vide
-    | Variable x -> Predicat (x, [])
+    | (Variable x) -> Predicat (x, [])
+}
+| x=IDENT LPAR e=separated_nonempty_list(COMMA, expr_simple) RPAR {
+  Predicat(x, e)
 }
 | NOT e=expr             { Not(e) }
 | e1=expr AND e2=expr    { And(e1, e2) }

@@ -1,0 +1,56 @@
+core.cmo : \
+    types.cmi \
+    printer.cmi \
+    list_aux.cmi \
+    core.cmi
+core.cmx : \
+    types.cmx \
+    printer.cmx \
+    list_aux.cmx \
+    core.cmi
+core.cmi : \
+    types.cmi
+lexer.cmo : \
+    parser.cmi
+lexer.cmx : \
+    parser.cmx
+list_aux.cmo : \
+    list_aux.cmi
+list_aux.cmx : \
+    list_aux.cmi
+list_aux.cmi :
+main.cmo : \
+    types.cmi \
+    printer.cmi \
+    parser.cmi \
+    lexer.cmo \
+    core.cmi
+main.cmx : \
+    types.cmx \
+    printer.cmx \
+    parser.cmx \
+    lexer.cmx \
+    core.cmx
+parser.cmo : \
+    types.cmi \
+    parser.cmi
+parser.cmx : \
+    types.cmx \
+    parser.cmi
+parser.cmi : \
+    types.cmi
+printer.cmo : \
+    types.cmi \
+    printer.cmi
+printer.cmx : \
+    types.cmx \
+    printer.cmi
+printer.cmi : \
+    types.cmi
+typage.cmo :
+typage.cmx :
+types.cmo : \
+    types.cmi
+types.cmx : \
+    types.cmi
+types.cmi :
