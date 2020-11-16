@@ -74,7 +74,6 @@ SOURCES = lexer.mll types.ml parser.mly list_aux.mli list_aux.ml printer.mli pri
 
 EXEC = main
 
-
 ########################## Advanced user's variables #####################
 #
 # The Caml compilers.
