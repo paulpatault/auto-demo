@@ -1,7 +1,7 @@
 # AutoDemo
  
 Outil de démonstration automatique de [séquent](https://fr.wikipedia.org/wiki/Calcul_des_séquents). 
-Prends en entré une liste d'hypothèses `Γ` et un conclusion `Δ` à démontrer, tel que `Γ ⊢ Δ`.
+Prend en entré une liste d'hypothèses `Γ` et une conclusion `Δ` à démontrer, tel que `Γ ⊢ Δ`.
 
 # Usage
 
