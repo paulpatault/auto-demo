@@ -2,8 +2,6 @@ open Types
 open Printer 
 open Core
 
-(* (!B => !A) => (A => B) *)
-
 let rec eval (fs: sequent) =
   Unix.sleepf 0.5;
   spaces ();
