@@ -81,27 +81,7 @@ let rec reduction ?(turn = -1) (seq: sequent): sequent list =
       Printf.printf "   ( rule G¬ )";
       let seq_res = { gauche = gamma; droite = f :: sd } in 
       [{gauche = mk_set seq_res.gauche; droite = mk_set seq_res.droite}]
-  
-  (* Rule : G∀ 
-        Γ, A(t), ∀x A(x) ⟹ Δ  
-      -----------------------
-          Γ, ∀x A(x) ⟹ Δ
-  *)
-  | Forall(x, fx) :: gamma, sd ->
-      Printf.printf "   ( rule G∀ )"; 
-      let seq_res = { gauche = fx :: gamma; droite = sd } in 
-      [{gauche = mk_set seq_res.gauche; droite = mk_set seq_res.droite}]
-
-  (* Rule : G∃
-            Γ, A(a) ⟹ Δ  
-      -----------------------
-          Γ, ∃x A(x) ⟹ Δ
-  *) 
-  | Exists(x, fx) :: gamma, sd -> 
-      Printf.printf "   ( rule G∃ )"; 
-      let seq_res = { gauche = fx :: gamma; droite = sd } in 
-      [{gauche = mk_set seq_res.gauche; droite = mk_set seq_res.droite}]
-
+ 
   | gamma, sd -> 
       if turn = List.length gamma 
       then reduction_droite gamma sd else
@@ -118,7 +98,7 @@ and reduction_droite ?(turn = -1) (gamma: formule list) (fl: formule list) : seq
   then (
     let cond, ax = is_axiom ({ gauche = gamma; droite = fl}) in
     if cond then raise (Win ax)
-    else check_predicats gamma fl
+    else raise Loose
   ) 
   else match fl with  
   (*  Rule : D∨ 
@@ -164,52 +144,4 @@ and reduction_droite ?(turn = -1) (gamma: formule list) (fl: formule list) : seq
       let seq_res = { gauche = f' :: gamma'; droite =  k } in 
       [{gauche = mk_set seq_res.gauche; droite = mk_set seq_res.droite}]
 
-  (* Rule : D∀ 
-          Γ ⟹ A(t), Δ
-      ----------------------------
-          Γ ⟹ ∀x A(x) , Δ
-  *) 
-  | Forall(x, fx) :: k -> 
-      Printf.printf "   ( rule D∀ )"; 
-      let seq_res = { gauche = gamma; droite = fx :: k } in 
-      [{gauche = mk_set seq_res.gauche; droite = mk_set seq_res.droite}]
-  
-  (* Rule : D∃
-         Γ ⟹ A(t), ∃x A(x) , Δ
-      ----------------------------
-          Γ ⟹ ∃x A(x) , Δ
-  *) 
-  | Exists(x, fx) :: k -> 
-      Printf.printf "   ( rule D∃ )"; 
-      let seq_res = { gauche = gamma; droite = fx :: k } in 
-      [{gauche = mk_set seq_res.gauche; droite = mk_set seq_res.droite}]
-
   | _ -> reduction_droite gamma (rotate_up fl) ~turn:(turn+1)
-
-(********************************************
-*                                           *
-*           Predicats rules                 *
-*                                           *
-********************************************) 
-
-and check_predicats ?(turn = -1) (gamma: formule list) (fl: formule list) : sequent list = 
-  if turn = max (List.length gamma) (List.length fl)
-  then (
-    let cond, ax = is_axiom ({ gauche = gamma; droite = fl}) in
-    if cond then raise (Win ax)
-    else check_predicats (rotate_up gamma) fl ~turn:(-1)
-  )
-  else match gamma, fl with
-  | Predicat(x1, t1) :: gamma', Predicat(x2, t2) :: delta ->
-    if x1 <> x2 then check_predicats gamma (rotate_up fl) ~turn:(turn+1)
-    else begin match x1 with 
-    | "<" -> 
-        if (List.hd t1 = List.hd t2) 
-        then 
-            if (List.hd (List.tl t1) < List.hd (List.tl t2)) 
-            then raise (Win "")
-            else raise Loose
-        else check_predicats gamma (rotate_up fl) ~turn:(turn+1)
-    | _ -> raise Loose
-    end
-  | _ -> raise Loose

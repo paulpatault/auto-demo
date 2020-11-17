@@ -47,8 +47,6 @@ printer.cmx : \
     printer.cmi
 printer.cmi : \
     types.cmi
-typage.cmo :
-typage.cmx :
 types.cmo : \
     types.cmi
 types.cmx : \

@@ -6,18 +6,11 @@ type token =
   | RPAR
   | OR
   | NOT
-  | LT
   | LPAR
-  | INEGAL
   | IDENT of (string)
-  | FORALL
   | FLECHE
-  | EXISTS
   | EOF
   | EMPTY
-  | EGAL
-  | CST of (int)
-  | COMMA
   | AND
 
 (* This exception is raised by the monolithic API functions. *)

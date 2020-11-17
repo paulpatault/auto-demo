@@ -9,8 +9,6 @@ type terme =
 type formule =
   | Vide
   | Predicat of const * terme list
-  | Forall   of var * formule 
-  | Exists   of var * formule 
   | Or       of formule * formule 
   | And      of formule * formule 
   | Implies  of formule * formule 

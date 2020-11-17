@@ -1,7 +1,7 @@
 # AutoDemo
  
-Outil de démonstration automatique. Prends deux formules logiques `𝗔` et `𝗕` en entrées, et vérifie que `𝗔 ⟹ 𝗕`.
-Retrouvez les [ressources](https://fr.wikipedia.org/wiki/Calcul_des_séquents) utilisée.
+Outil de démonstration automatique de [séquent](https://fr.wikipedia.org/wiki/Calcul_des_séquents). 
+Prends en entré une liste d'hypothèses `Γ` et un conclusion `Δ` à démontrer, tel que `Γ ⊢ Δ`.
 
 # Usage
 
@@ -52,30 +52,16 @@ Retrouvez les [ressources](https://fr.wikipedia.org/wiki/Calcul_des_séquents) u
 
 # Syntaxe
 
-| Mot                               |    Syntaxe    |   Étât    |
-| :-------------------------------- | :-----------: | :-------: |
-| Pour tout : `∀`                   |     `[A]`     | :warning: |
-| Il existe : `∃`                   |     `[E]`     | :warning: |
-| Égale : `=`                       |      `=`      | :warning: |
-| Différent : `≠`                   |     `<>`      | :warning: |
-| Non : `¬`                         |      `!`      |     ✓     |
-| Inférieur : `<`                   |      `<`      |     ✓     |
-| Et : `∧`                          |     `&&`      |     ✓     |
-| Ou : `∨`                          |    `\|\|`     |     ✓     |
-| Implique : `⇒`                    |     `=>`      |     ✓     |
-| Parenthèses ouvrante : `(`        |      `(`      |     ✓     |
-| Parenthèses fermante : `)`        |      `)`      |     ✓     |
-| Séparateur : `;`                  |      `;`      |     ✓     |
-| Virgule : `,`                     |      `,`      |     ✓     |
-| Formule : `A`                     |      `A`      |     ✓     |
-| Variable : `𝒙`                    |      `𝒙`      | :warning: |
-| Vide : `ε`                        |      `_`      |     ✓     |
-| Liste d'hypothèses : `[A, B,...]` | `A ; B ; ...` |     ✓     |
-
-
-# Todo
-
-+ Rules for : ∀, ∃
-+ Fix : 
-  + parser.mly
-  + ...
+| Mot                               |    Syntaxe    | Étât  |
+| :-------------------------------- | :-----------: | :---: |
+| Non : `¬`                         |      `!`      |   ✓   |
+| Inférieur : `<`                   |      `<`      |   ✓   |
+| Et : `∧`                          |     `&&`      |   ✓   |
+| Ou : `∨`                          |    `\|\|`     |   ✓   |
+| Implique : `⇒`                    |     `=>`      |   ✓   |
+| Parenthèses ouvrante : `(`        |      `(`      |   ✓   |
+| Parenthèses fermante : `)`        |      `)`      |   ✓   |
+| Séparateur d'hypothèses : `;`     |      `;`      |   ✓   |
+| Formule : `A`                     |      `A`      |   ✓   |
+| Vide : `ε`                        |      `_`      |   ✓   |
+| Liste d'hypothèses : `[A, B,...]` | `A ; B ; ...` |   ✓   |

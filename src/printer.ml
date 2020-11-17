@@ -60,8 +60,6 @@ let rec formule_to_string (f: formule): unit =
         if List.length termel > 1 then List.iter (fun e -> Printf.printf ","; terme_to_string e) (List.tl termel);
         Printf.printf "))"          
       ) else  Printf.printf ")" 
-  | Forall (v, f')   -> let vi = !i in open_par vi; Printf.printf "pour tout %s " v; formule_to_string f'; close_par vi
-  | Exists (v, f')   -> let vi = !i in open_par vi; Printf.printf "il existe %s " v; formule_to_string f'; close_par vi
   | Or (f1, f2)      -> let vi = !i in open_par vi; formule_to_string f1; Printf.printf " ∨ "; formule_to_string f2;close_par vi
   | And (f1, f2)     -> let vi = !i in open_par vi; formule_to_string f1; Printf.printf " ∧ "; formule_to_string f2;close_par vi
   | Implies (f1, f2) -> let vi = !i in open_par vi; formule_to_string f1; Printf.printf " ⇒ "; formule_to_string f2;close_par vi

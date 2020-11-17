@@ -2,17 +2,13 @@
   open Types
 %}
 
-%token <int> CST 
 %token <string> IDENT
-%token NOT AND OR FORALL EXISTS FLECHE
-%token EGAL INEGAL LT
+%token NOT AND OR FLECHE
 %token LPAR RPAR
-%token COMMA /* , */ SEMI /* ; */
+%token SEMI /* ; */
 %token EMPTY
 %token EOF
 
-%right EXISTS
-%right FORALL
 %right FLECHE
 %right OR
 %right AND
@@ -31,7 +27,6 @@ main:
 ;
 
 expr_simple:
-| n=CST             { (Variable (string_of_int n)) }
 | x=IDENT           { (Variable x) }
 ;
 
@@ -42,19 +37,8 @@ expr:
     match e with
     | (Variable x) -> Predicat (x, [])
 }
-| x=IDENT LPAR e=separated_nonempty_list(COMMA, expr_simple) RPAR {
-  Predicat(x, e)
-}
 | NOT e=expr             { Not(e) }
 | e1=expr AND e2=expr    { And(e1, e2) }
 | e1=expr OR  e2=expr    { Or(e1, e2) }
-| e1=expr COMMA e2=expr  { e1 }
-| e1=expr_simple EGAL e2=expr_simple   { Predicat ("=", [e1; e2]) }
-| e1=expr_simple INEGAL e2=expr_simple { Predicat ("<>", [e1; e2]) }
-| e1=expr_simple LT e2=expr_simple     {
-    Predicat ("<", [e1; e2])
-}
-| FORALL x=IDENT COMMA e=expr   { Forall(x, e) }
-| EXISTS x=IDENT COMMA e=expr   { Exists(x, e) }
 | e1=expr FLECHE e2=expr  { Implies(e1, e2) }
 ;
