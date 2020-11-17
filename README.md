@@ -7,6 +7,7 @@ Prends en entré une liste d'hypothèses `Γ` et un conclusion `Δ` à démontre
 
 + Compilation et exéctution :
     ```
+    $ cd src/
     $ make
     $ ./main
     ```
