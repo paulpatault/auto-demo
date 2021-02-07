@@ -66,3 +66,7 @@ Prend en entrée une liste d'hypothèses `Γ` et une conclusion `Δ` à démontr
 | Formule : `A`                     |      `A`      |   ✓   |
 | Vide : `ε`                        |      `_`      |   ✓   |
 | Liste d'hypothèses : `[A, B,...]` | `A ; B ; ...` |   ✓   |
+
+# Resources
+
++ [Cameleer](https://github.com/mariojppereira/cameleer)
