@@ -22,7 +22,7 @@
 main:
 | e=expr EOF { F e }
 | l=separated_list(SEMI, expr) EOF {
-  F (Hyp l) 
+  F (Hyp l)
 }
 ;
 
@@ -32,13 +32,15 @@ expr_simple:
 
 expr:
 | LPAR e=expr RPAR       { e }
-| e=EMPTY                { Vide }
-| e=expr_simple          { 
-    match e with
-    | (Variable x) -> Predicat (x, [])
+| EMPTY                  { Vide }
+| e=expr_simple          {
+    begin match e with
+    | Variable x -> Predicat (x, [])
+    | _          -> failwith "error"
+    end
 }
-| NOT e=expr             { Not(e) }
-| e1=expr AND e2=expr    { And(e1, e2) }
-| e1=expr OR  e2=expr    { Or(e1, e2) }
+| NOT e=expr              { Not(e) }
+| e1=expr AND e2=expr     { And(e1, e2) }
+| e1=expr OR  e2=expr     { Or(e1, e2) }
 | e1=expr FLECHE e2=expr  { Implies(e1, e2) }
 ;

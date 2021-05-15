@@ -1,0 +1,4 @@
+(library
+  (flags
+    (:standard -w -27 -w -32 -w -33))
+  (name aux))
