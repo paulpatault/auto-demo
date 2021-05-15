@@ -17,7 +17,7 @@ let rec contient (l1: 'a list) (l2: 'a list): bool =
   | [] -> true
   | e::k -> List.exists (fun e' -> e' = e) l1 && contient l1 k
 
-let mk_set l =
+let makeSet l =
   List.fold_left (
       fun acc e ->
         if List.mem e acc then acc
@@ -25,8 +25,8 @@ let mk_set l =
     ) [] l
 
 let inter l1 l2 =
-  let l1 = mk_set l1 in
-  let l2 = mk_set l2 in
+  let l1 = makeSet l1 in
+  let l2 = makeSet l2 in
   List.fold_left (
       fun acc e ->
         if List.mem e l2 then e :: acc
@@ -36,3 +36,4 @@ let inter l1 l2 =
 let empty l = List.length l = 0
 
 let not_empty l = List.length l <> 0
+
