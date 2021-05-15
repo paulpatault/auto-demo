@@ -1,0 +1,25 @@
+
+** Conflict (shift/reduce) in state 19.
+** Token involved: EOF
+** This state is reached from main after reading:
+
+expr
+
+** The derivations that appear below have the following common factor:
+** (The question mark symbol (?) represents the spot where the derivations begin to differ.)
+
+main 
+(?)
+
+** In state 19, looking ahead at EOF, shifting is permitted
+** because of the following sub-derivation:
+
+expr . EOF 
+
+** In state 19, looking ahead at EOF, reducing production
+** separated_nonempty_list(SEMI,expr) -> expr
+** is permitted because of the following sub-derivation:
+
+loption(separated_nonempty_list(SEMI,expr)) EOF // lookahead token appears
+separated_nonempty_list(SEMI,expr) // lookahead token is inherited
+expr . 

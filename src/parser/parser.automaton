@@ -1,0 +1,315 @@
+State 0:
+## Known stack suffix:
+##
+## LR(1) items:
+main' -> . main [ # ]
+## Transitions:
+-- On NOT shift to state 1
+-- On LPAR shift to state 2
+-- On IDENT shift to state 3
+-- On EMPTY shift to state 4
+-- On separated_nonempty_list(SEMI,expr) shift to state 15
+-- On main shift to state 16
+-- On loption(separated_nonempty_list(SEMI,expr)) shift to state 17
+-- On expr_simple shift to state 5
+-- On expr shift to state 19
+## Reductions:
+-- On EOF
+--   reduce production loption(separated_nonempty_list(SEMI,expr)) ->
+
+State 1:
+## Known stack suffix:
+## NOT
+## LR(1) items:
+expr -> NOT . expr [ SEMI RPAR OR FLECHE EOF AND ]
+## Transitions:
+-- On NOT shift to state 1
+-- On LPAR shift to state 2
+-- On IDENT shift to state 3
+-- On EMPTY shift to state 4
+-- On expr_simple shift to state 5
+-- On expr shift to state 14
+## Reductions:
+
+State 2:
+## Known stack suffix:
+## LPAR
+## LR(1) items:
+expr -> LPAR . expr RPAR [ SEMI RPAR OR FLECHE EOF AND ]
+## Transitions:
+-- On NOT shift to state 1
+-- On LPAR shift to state 2
+-- On IDENT shift to state 3
+-- On EMPTY shift to state 4
+-- On expr_simple shift to state 5
+-- On expr shift to state 6
+## Reductions:
+
+State 3:
+## Known stack suffix:
+## IDENT
+## LR(1) items:
+expr_simple -> IDENT . [ SEMI RPAR OR FLECHE EOF AND ]
+## Transitions:
+## Reductions:
+-- On SEMI RPAR OR FLECHE EOF AND
+--   reduce production expr_simple -> IDENT
+
+State 4:
+## Known stack suffix:
+## EMPTY
+## LR(1) items:
+expr -> EMPTY . [ SEMI RPAR OR FLECHE EOF AND ]
+## Transitions:
+## Reductions:
+-- On SEMI RPAR OR FLECHE EOF AND
+--   reduce production expr -> EMPTY
+
+State 5:
+## Known stack suffix:
+## expr_simple
+## LR(1) items:
+expr -> expr_simple . [ SEMI RPAR OR FLECHE EOF AND ]
+## Transitions:
+## Reductions:
+-- On SEMI RPAR OR FLECHE EOF AND
+--   reduce production expr -> expr_simple
+
+State 6:
+## Known stack suffix:
+## LPAR expr
+## LR(1) items:
+expr -> LPAR expr . RPAR [ SEMI RPAR OR FLECHE EOF AND ]
+expr -> expr . AND expr [ RPAR OR FLECHE AND ]
+expr -> expr . OR expr [ RPAR OR FLECHE AND ]
+expr -> expr . FLECHE expr [ RPAR OR FLECHE AND ]
+## Transitions:
+-- On RPAR shift to state 7
+-- On OR shift to state 8
+-- On FLECHE shift to state 12
+-- On AND shift to state 10
+## Reductions:
+
+State 7:
+## Known stack suffix:
+## LPAR expr RPAR
+## LR(1) items:
+expr -> LPAR expr RPAR . [ SEMI RPAR OR FLECHE EOF AND ]
+## Transitions:
+## Reductions:
+-- On SEMI RPAR OR FLECHE EOF AND
+--   reduce production expr -> LPAR expr RPAR
+
+State 8:
+## Known stack suffix:
+## expr OR
+## LR(1) items:
+expr -> expr OR . expr [ SEMI RPAR OR FLECHE EOF AND ]
+## Transitions:
+-- On NOT shift to state 1
+-- On LPAR shift to state 2
+-- On IDENT shift to state 3
+-- On EMPTY shift to state 4
+-- On expr_simple shift to state 5
+-- On expr shift to state 9
+## Reductions:
+
+State 9:
+## Known stack suffix:
+## expr OR expr
+## LR(1) items:
+expr -> expr . AND expr [ SEMI RPAR OR FLECHE EOF AND ]
+expr -> expr . OR expr [ SEMI RPAR OR FLECHE EOF AND ]
+expr -> expr OR expr . [ SEMI RPAR OR FLECHE EOF AND ]
+expr -> expr . FLECHE expr [ SEMI RPAR OR FLECHE EOF AND ]
+## Transitions:
+-- On OR shift to state 8
+-- On AND shift to state 10
+## Reductions:
+-- On SEMI RPAR FLECHE EOF
+--   reduce production expr -> expr OR expr
+
+State 10:
+## Known stack suffix:
+## expr AND
+## LR(1) items:
+expr -> expr AND . expr [ SEMI RPAR OR FLECHE EOF AND ]
+## Transitions:
+-- On NOT shift to state 1
+-- On LPAR shift to state 2
+-- On IDENT shift to state 3
+-- On EMPTY shift to state 4
+-- On expr_simple shift to state 5
+-- On expr shift to state 11
+## Reductions:
+
+State 11:
+## Known stack suffix:
+## expr AND expr
+## LR(1) items:
+expr -> expr . AND expr [ SEMI RPAR OR FLECHE EOF AND ]
+expr -> expr AND expr . [ SEMI RPAR OR FLECHE EOF AND ]
+expr -> expr . OR expr [ SEMI RPAR OR FLECHE EOF AND ]
+expr -> expr . FLECHE expr [ SEMI RPAR OR FLECHE EOF AND ]
+## Transitions:
+-- On AND shift to state 10
+## Reductions:
+-- On SEMI RPAR OR FLECHE EOF
+--   reduce production expr -> expr AND expr
+
+State 12:
+## Known stack suffix:
+## expr FLECHE
+## LR(1) items:
+expr -> expr FLECHE . expr [ SEMI RPAR OR FLECHE EOF AND ]
+## Transitions:
+-- On NOT shift to state 1
+-- On LPAR shift to state 2
+-- On IDENT shift to state 3
+-- On EMPTY shift to state 4
+-- On expr_simple shift to state 5
+-- On expr shift to state 13
+## Reductions:
+
+State 13:
+## Known stack suffix:
+## expr FLECHE expr
+## LR(1) items:
+expr -> expr . AND expr [ SEMI RPAR OR FLECHE EOF AND ]
+expr -> expr . OR expr [ SEMI RPAR OR FLECHE EOF AND ]
+expr -> expr . FLECHE expr [ SEMI RPAR OR FLECHE EOF AND ]
+expr -> expr FLECHE expr . [ SEMI RPAR OR FLECHE EOF AND ]
+## Transitions:
+-- On OR shift to state 8
+-- On FLECHE shift to state 12
+-- On AND shift to state 10
+## Reductions:
+-- On SEMI RPAR EOF
+--   reduce production expr -> expr FLECHE expr
+
+State 14:
+## Known stack suffix:
+## NOT expr
+## LR(1) items:
+expr -> NOT expr . [ SEMI RPAR OR FLECHE EOF AND ]
+expr -> expr . AND expr [ SEMI RPAR OR FLECHE EOF AND ]
+expr -> expr . OR expr [ SEMI RPAR OR FLECHE EOF AND ]
+expr -> expr . FLECHE expr [ SEMI RPAR OR FLECHE EOF AND ]
+## Transitions:
+## Reductions:
+-- On SEMI RPAR OR FLECHE EOF AND
+--   reduce production expr -> NOT expr
+
+State 15:
+## Known stack suffix:
+## separated_nonempty_list(SEMI,expr)
+## LR(1) items:
+loption(separated_nonempty_list(SEMI,expr)) -> separated_nonempty_list(SEMI,expr) . [ EOF ]
+## Transitions:
+## Reductions:
+-- On EOF
+--   reduce production loption(separated_nonempty_list(SEMI,expr)) -> separated_nonempty_list(SEMI,expr)
+
+State 16:
+## Known stack suffix:
+## main
+## LR(1) items:
+main' -> main . [ # ]
+## Transitions:
+## Reductions:
+-- On #
+--   accept main
+
+State 17:
+## Known stack suffix:
+## loption(separated_nonempty_list(SEMI,expr))
+## LR(1) items:
+main -> loption(separated_nonempty_list(SEMI,expr)) . EOF [ # ]
+## Transitions:
+-- On EOF shift to state 18
+## Reductions:
+
+State 18:
+## Known stack suffix:
+## loption(separated_nonempty_list(SEMI,expr)) EOF
+## LR(1) items:
+main -> loption(separated_nonempty_list(SEMI,expr)) EOF . [ # ]
+## Transitions:
+## Reductions:
+-- On #
+--   reduce production main -> loption(separated_nonempty_list(SEMI,expr)) EOF
+
+State 19:
+## Known stack suffix:
+## expr
+## LR(1) items:
+expr -> expr . AND expr [ SEMI OR FLECHE EOF AND ]
+expr -> expr . OR expr [ SEMI OR FLECHE EOF AND ]
+expr -> expr . FLECHE expr [ SEMI OR FLECHE EOF AND ]
+main -> expr . EOF [ # ]
+separated_nonempty_list(SEMI,expr) -> expr . [ EOF ]
+separated_nonempty_list(SEMI,expr) -> expr . SEMI separated_nonempty_list(SEMI,expr) [ EOF ]
+## Transitions:
+-- On SEMI shift to state 20
+-- On OR shift to state 8
+-- On FLECHE shift to state 12
+-- On EOF shift to state 23
+-- On AND shift to state 10
+## Reductions:
+-- On EOF
+--   reduce production separated_nonempty_list(SEMI,expr) -> expr
+** Conflict on EOF
+
+State 20:
+## Known stack suffix:
+## expr SEMI
+## LR(1) items:
+separated_nonempty_list(SEMI,expr) -> expr SEMI . separated_nonempty_list(SEMI,expr) [ EOF ]
+## Transitions:
+-- On NOT shift to state 1
+-- On LPAR shift to state 2
+-- On IDENT shift to state 3
+-- On EMPTY shift to state 4
+-- On separated_nonempty_list(SEMI,expr) shift to state 21
+-- On expr_simple shift to state 5
+-- On expr shift to state 22
+## Reductions:
+
+State 21:
+## Known stack suffix:
+## expr SEMI separated_nonempty_list(SEMI,expr)
+## LR(1) items:
+separated_nonempty_list(SEMI,expr) -> expr SEMI separated_nonempty_list(SEMI,expr) . [ EOF ]
+## Transitions:
+## Reductions:
+-- On EOF
+--   reduce production separated_nonempty_list(SEMI,expr) -> expr SEMI separated_nonempty_list(SEMI,expr)
+
+State 22:
+## Known stack suffix:
+## expr
+## LR(1) items:
+expr -> expr . AND expr [ SEMI OR FLECHE EOF AND ]
+expr -> expr . OR expr [ SEMI OR FLECHE EOF AND ]
+expr -> expr . FLECHE expr [ SEMI OR FLECHE EOF AND ]
+separated_nonempty_list(SEMI,expr) -> expr . [ EOF ]
+separated_nonempty_list(SEMI,expr) -> expr . SEMI separated_nonempty_list(SEMI,expr) [ EOF ]
+## Transitions:
+-- On SEMI shift to state 20
+-- On OR shift to state 8
+-- On FLECHE shift to state 12
+-- On AND shift to state 10
+## Reductions:
+-- On EOF
+--   reduce production separated_nonempty_list(SEMI,expr) -> expr
+
+State 23:
+## Known stack suffix:
+## expr EOF
+## LR(1) items:
+main -> expr EOF . [ # ]
+## Transitions:
+## Reductions:
+-- On #
+--   reduce production main -> expr EOF
+

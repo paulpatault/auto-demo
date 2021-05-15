@@ -4,3 +4,5 @@
   (libraries parser)
   (name lexer))
 
+(ocamllex
+  (modules lexer))
