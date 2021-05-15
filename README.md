@@ -1,29 +1,29 @@
 # AutoDemo
- 
-Outil de démonstration automatique de [séquent](https://fr.wikipedia.org/wiki/Calcul_des_séquents). 
+
+Outil de démonstration automatique de [séquent](https://fr.wikipedia.org/wiki/Calcul_des_séquents).
 Prend en entrée une liste d'hypothèses `Γ` et une conclusion `Δ` à démontrer, tel que `Γ ⊢ Δ`.
 
 # Usage
 
 + Compilation et exéctution :
+    ```bash
+    $ git clone https://github.com/paulpatault/AutoDemo.git
+    $ cd AutoDemo
+    $ dune exec src/main.exe
     ```
-    $ cd src/
-    $ make
-    $ ./main
-    ```
-+ Donner au programme les entrées : 
++ Donner au programme les entrées :
   > → remplir les trous en utilisant la bonne syntaxe, cf. [Syntaxe](#Syntaxe)
-    ```
+    ```bash
     ...
-    $ ./main
+    $ dune exec src/main.exe
       Γ (hyphthèses): __
       Δ (à démontrer): __
     ...
     ```
 + Le résultat va s'afficher !
     > Exemple 1
-    ```
-    $ ./main
+    ```bash
+    $ dune exec src/main.exe
       Γ (hyphthèses): P ; P => Q ; Q => R
       Δ (à démontrer): R
 
@@ -38,8 +38,8 @@ Prend en entrée une liste d'hypothèses `Γ` et une conclusion `Δ` à démontr
       ---- VALIDE ----
     ```
     > Exemple 2
-    ```
-    $ ./main
+    ```bash
+    $ dune exec src/main.exe
       Γ (hyphthèses): A || B
       Δ (à démontrer): A && B
 
@@ -53,19 +53,19 @@ Prend en entrée une liste d'hypothèses `Γ` et une conclusion `Δ` à démontr
 
 # Syntaxe
 
-| Mot                               |    Syntaxe    | Étât  |
-| :-------------------------------- | :-----------: | :---: |
-| Non : `¬`                         |      `!`      |   ✓   |
-| Inférieur : `<`                   |      `<`      |   ✓   |
-| Et : `∧`                          |     `&&`      |   ✓   |
-| Ou : `∨`                          |    `\|\|`     |   ✓   |
-| Implique : `⇒`                    |     `=>`      |   ✓   |
-| Parenthèses ouvrante : `(`        |      `(`      |   ✓   |
-| Parenthèses fermante : `)`        |      `)`      |   ✓   |
-| Séparateur d'hypothèses : `;`     |      `;`      |   ✓   |
-| Formule : `A`                     |      `A`      |   ✓   |
-| Vide : `ε`                        |      `_`      |   ✓   |
-| Liste d'hypothèses : `[A, B,...]` | `A ; B ; ...` |   ✓   |
+| Mot                               |    Syntaxe     | Étât  |
+| :-------------------------------- | :------------: | :---: |
+| Non : `¬`                         |      `!`       |   ✓   |
+| Inférieur : `<`                   |      `<`       |   ✓   |
+| Et : `∧`                          | `/\` ou `&&`   |   ✓   |
+| Ou : `∨`                          | `\/` ou `\|\|` |   ✓   |
+| Implique : `⇒`                    |     `->`       |   ✓   |
+| Parenthèses ouvrante : `(`        |      `(`       |   ✓   |
+| Parenthèses fermante : `)`        |      `)`       |   ✓   |
+| Séparateur d'hypothèses : `;`     |      `;`       |   ✓   |
+| Formule : `A`                     |      `A`       |   ✓   |
+| Vide : `ε`                        |      `_`       |   ✓   |
+| Liste d'hypothèses : `[A, B,...]` | `A ; B ; ...`  |   ✓   |
 
 # Resources
 
