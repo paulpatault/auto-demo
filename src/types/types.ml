@@ -1,22 +1,22 @@
-type var = string 
+type var = string
 
-type const = string 
+type const = string
 
-type terme = 
-  | Variable of var 
+type terme =
+  | Variable of var
   | Constant of const * terme list
 
 type formule =
   | Vide
   | Predicat of const * terme list
-  | Or       of formule * formule 
-  | And      of formule * formule 
-  | Implies  of formule * formule 
+  | Or       of formule * formule
+  | And      of formule * formule
+  | Implies  of formule * formule
   | Not      of formule
   | Hyp      of formule list
 
-type terme_ou_formule = 
-  | T of terme 
+type terme_ou_formule =
+  | T of terme
   | F of formule
 
 (* let toutXNeg = Forall("x", (Predicat("<", [Variable ("x"); Constant("0", [])])))  *)
@@ -33,5 +33,5 @@ let fs2 = {
   droite = [And (Predicat ("A", []), Predicat ("B", []))]
 } *)
 
-exception Loose 
+exception Loose
 exception Win of string

@@ -20,7 +20,7 @@
 %%
 
 main:
-| e=expr EOF { F e }
+(* | e=expr EOF { F e } *)
 | l=separated_list(SEMI, expr) EOF {
   F (Hyp l)
 }

@@ -3,4 +3,6 @@
   (name parser))
 
 (menhir
+  (flags
+    (:standard -v))
   (modules parser))
