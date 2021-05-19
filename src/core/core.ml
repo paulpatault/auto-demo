@@ -33,7 +33,7 @@ let rotate_up l =
     List.tl l @ [ List.hd l ]
   with Failure _ -> l
 
-let rec reduction ?(turn = 0) (seq: sequent): sequent list =
+let rec reduction ?(turn = 0) ?(printopt = true) (seq: sequent): sequent list =
   (* Rappel :
     A₁, ..., Aₙ ⊢ B₁,...,Bₖ ⟺  (A₁ ∧ . . . ∧ Aₙ) ⇒ (B₁ ∨ . . . ∨ Bₖ)
   *)
@@ -46,7 +46,7 @@ let rec reduction ?(turn = 0) (seq: sequent): sequent list =
              Γ, F ∨ G ⇒ Δ
   *)
   | Or (f, g) :: gamma, sd ->
-      Printf.printf "   ( rule G∨ )";
+      if printopt then Printf.printf "   ( rule G∨ )";
       let gamma' = if gamma = [Vide] then [] else gamma in
       let s1 = { gauche = f :: gamma'; droite = sd } in
       let s2 = { gauche = g :: gamma'; droite = sd } in
@@ -58,7 +58,7 @@ let rec reduction ?(turn = 0) (seq: sequent): sequent list =
         Γ, F ∧ G ⇒ Δ
   *)
   | And (f, g) :: gamma, sd ->
-      Printf.printf "   ( rule G∧ )";
+      if printopt then Printf.printf "   ( rule G∧ )";
       let gamma' = if gamma = [Vide] then [] else gamma in
       let s = { gauche = f :: g :: gamma'; droite = sd } in
       [s]
@@ -69,7 +69,7 @@ let rec reduction ?(turn = 0) (seq: sequent): sequent list =
              Γ, F ⟶  G ⇒ Δ
   *)
   | Implies (f, g) :: gamma, sd ->
-      Printf.printf "   ( rule G→ )";
+      if printopt then Printf.printf "   ( rule G→ )";
       let gamma' = if gamma = [Vide] then [] else gamma in
       let s1 = { gauche = gamma; droite = f :: sd } in
       let s2 = { gauche = g :: gamma'; droite = sd } in
@@ -81,7 +81,7 @@ let rec reduction ?(turn = 0) (seq: sequent): sequent list =
         Γ, ¬F ⇒ Δ
   *)
   | Not f :: gamma, sd ->
-      Printf.printf "   ( rule G¬ )";
+      if printopt then Printf.printf "   ( rule G¬ )";
       let seq_res = { gauche = gamma; droite = f :: sd } in
       [{
         gauche = makeSet seq_res.gauche; droite = makeSet seq_res.droite
@@ -89,8 +89,8 @@ let rec reduction ?(turn = 0) (seq: sequent): sequent list =
 
   | gamma, sd ->
       if turn = List.length gamma
-      then reduction_droite gamma sd
-      else reduction {gauche = rotate_up gamma; droite = sd} ~turn:(turn+1)
+      then reduction_droite gamma sd ~printopt:printopt
+      else reduction {gauche = rotate_up gamma; droite = sd} ~turn:(turn+1) ~printopt:printopt
 
 (********************************************
 *                                           *
@@ -98,7 +98,7 @@ let rec reduction ?(turn = 0) (seq: sequent): sequent list =
 *                                           *
 ********************************************)
 
-and reduction_droite ?(turn = 0) (gamma: formule list) (fl: formule list) : sequent list =
+and reduction_droite ?(turn = 0) ?(printopt = true) (gamma: formule list) (fl: formule list) : sequent list =
   if turn = List.length fl
   then (
     let cond, ax = is_axiom ({gauche = gamma; droite = fl}) in
@@ -112,7 +112,7 @@ and reduction_droite ?(turn = 0) (gamma: formule list) (fl: formule list) : sequ
           Γ ⇒ ∆, F ∨ G
   *)
   | Or (f, g) :: k ->
-      Printf.printf "   ( rule Dv )";
+      if printopt then Printf.printf "   ( rule Dv )";
       let d = f :: g :: k in
       let seq_res = { gauche = gamma; droite = d } in
       [{
@@ -124,7 +124,7 @@ and reduction_droite ?(turn = 0) (gamma: formule list) (fl: formule list) : sequ
             Γ ⇒ ∆, F ∧ G
   *)
   | And (f, g) :: k ->
-      Printf.printf "   ( rule D∧ )";
+      if printopt then Printf.printf "   ( rule D∧ )";
       let s1 = { gauche = gamma; droite = f :: k } in
       let s2 = { gauche = gamma; droite = g :: k } in
       [s1;s2]
@@ -135,7 +135,7 @@ and reduction_droite ?(turn = 0) (gamma: formule list) (fl: formule list) : sequ
       Γ ⇒ ∆, F ⟶  G
   *)
   | Implies (f, g) :: k ->
-      Printf.printf "   ( rule D→ )";
+      if printopt then Printf.printf "   ( rule D→ )";
       let gamma' = if gamma = [Vide] then [] else gamma in
       let seq_res = { gauche = f :: gamma'; droite = g :: k } in
       [{
@@ -149,11 +149,11 @@ and reduction_droite ?(turn = 0) (gamma: formule list) (fl: formule list) : sequ
       Γ ⇒ ∆, ¬G
   *)
   | Not f' :: k ->
-      Printf.printf "   ( rule D¬ )";
+      if printopt then Printf.printf "   ( rule D¬ )";
       let gamma' = if gamma = [Vide] then [] else gamma in
       let seq_res = { gauche = f' :: gamma'; droite =  k } in
       [{
         gauche = makeSet seq_res.gauche; droite = makeSet seq_res.droite
       }]
 
-  | _ -> reduction_droite gamma (rotate_up fl) ~turn:(turn+1)
+  | _ -> reduction_droite gamma (rotate_up fl) ~turn:(turn+1) ~printopt:printopt

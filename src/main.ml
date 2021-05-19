@@ -1,26 +1,7 @@
 open Types
 open Printer
 open Core
-
-let rec eval (fs: sequent) =
-  Unix.sleepf 0.5;
-  spaces ();
-  sequent_to_string fs;
-  try
-    let red_fs = reduction fs in
-    incr decale;
-    Printf.printf "\n";  flush stdout;
-    let a = List.fold_left (fun acc e -> acc && eval e) true red_fs in
-    decr decale; a
-  with
-    | Loose ->
-        Printf.printf "   → impossible\n";
-        flush stdout;
-        false
-    | Win s ->
-        Printf.printf "   → is axiom\n";
-        flush stdout;
-        true
+open Evaluation
 
 let make_formule (s: string) =
   Printf.printf "%s" s; flush stdout;

@@ -1,0 +1,6 @@
+(library
+  (libraries core types printer parser lexer unix)
+  (flags
+    (:standard -w -27 -w -32 -w -33))
+  (name evaluation))
+

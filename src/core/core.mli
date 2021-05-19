@@ -1,5 +1,5 @@
 open Types
 
-val is_axiom : sequent ->  bool * string 
+val is_axiom : sequent ->  bool * string
 
-val reduction : ?turn: int -> sequent -> sequent list 
+val reduction : ?turn: int -> ?printopt: bool -> sequent -> sequent list
