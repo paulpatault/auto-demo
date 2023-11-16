@@ -16,7 +16,7 @@ Prend en entrée une liste d'hypothèses `Γ` et une conclusion `Δ` à démontr
     ```bash
     ...
     $ dune exec src/main.exe
-      Γ (hyphthèses): __
+      Γ (hypothèses): __
       Δ (à démontrer): __
     ...
     ```
@@ -24,7 +24,7 @@ Prend en entrée une liste d'hypothèses `Γ` et une conclusion `Δ` à démontr
     > Exemple 1
     ```bash
     $ dune exec src/main.exe
-      Γ (hyphthèses): P ; P => Q ; Q => R
+      Γ (hypothèses): P ; P => Q ; Q => R
       Δ (à démontrer): R
 
       ---- Évaluation ----
@@ -40,7 +40,7 @@ Prend en entrée une liste d'hypothèses `Γ` et une conclusion `Δ` à démontr
     > Exemple 2
     ```bash
     $ dune exec src/main.exe
-      Γ (hyphthèses): A || B
+      Γ (hypothèses): A || B
       Δ (à démontrer): A && B
 
       ---- Évaluation ----
